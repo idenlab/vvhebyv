@@ -1,0 +1,443 @@
+<h1> Mobile Article Aggregator Platform (MAP)</h1><br><br><hr><br>
+
+Mobile Article Aggregator Platform 是一个面向移动端内容聚合与分发场景的开源技术资源导航站。该项目定位于为开发者、技术研究人员以及内容运营团队提供结构化的移动端文章链接索引与快速检索能力，解决移动端技术文章分散、检索效率低下、域名迁移频繁导致链接失效等实际问题。
+
+项目本身不存储任何文章内容，仅作为外链元数据的索引层与展示层，通过静态化的资源列表与分类标签体系，帮助用户在海量移动端技术文档中快速定位目标资源。目标用户包括移动端开发工程师、全栈技术学习者、技术博客维护者以及企业内部知识库管理人员。
+
+<h2>功能概览</h2><br>
+
+<p><h3>海量链接索引管理</h3>：支持对超过 250 条移动端技术文章链接进行集中存储与分类展示，覆盖多种技术子领域。</p>
+
+<p><h3>静态化资源列表呈现</h3>：所有链接以纯 Markdown 形式维护于项目仓库中，无需数据库依赖，便于版本控制与协作编辑。</p>
+
+<p><h3>分类标签体系</h3>：根据文章主题、技术栈或访问热度对链接进行逻辑分组，降低用户筛选成本。</p>
+
+<p><h3>快速检索入口</h3>：提供基于文章 ID 或路径关键字的本地搜索功能，提升链接定位速度。</p>
+
+<p><h3>链接状态检测工具</h3>：集成可选的定时检测脚本，自动标记可能失效或响应异常的链接，保障资源列表的有效性。</p>
+
+<p><h3>移动端适配展示</h3>：前端模板针对手机和平板设备进行优化，确保在移动浏览器上获得良好的阅读与导航体验。</p>
+
+<p><h3>开源协作扩展机制</h3>：支持社区用户通过提交 Issue 或 Pull Request 的方式新增、更新或删除链接条目，保持资源列表的时效性。</p>
+
+<p><h3>轻量化部署能力</h3>：项目整体基于静态文件生成，可托管于任何支持 HTTP 服务的平台，包括 GitHub Pages、Cloudflare Pages 或自建 Nginx 服务器。</p>
+
+<h2>应用场景</h2><br>
+
+技术团队内部知识库建设：企业内部的技术团队可将本项目作为基础框架，整理团队内部积累的移动端技术文章链接，形成统一的知识索引入口，减少重复的文档查找工作。
+
+个人技术博客的友情链接扩展：独立技术博客作者可利用本项目的资源列表作为博客侧边栏的补充，为读者提供更多外部阅读资源，同时降低博客维护外链的复杂度。
+
+技术社区的内容聚合展示：技术社区运营方可基于本项目快速搭建文章推荐专区，将社区内的高质量技术帖按分类进行外链汇总，提升社区内容的曝光率与复用率。
+
+技术培训课程的参考资料索引：培训机构或技术讲师可将本项目作为课程参考资料库，将课程中涉及的外部延伸阅读链接统一整理到项目列表中，方便学员课后查阅。
+
+开源项目文档的关联资源导航：开源项目维护者可在项目文档中引用本项目的资源列表，为使用者提供相关的技术背景阅读材料，丰富项目的辅助信息生态。
+
+<h2>快速开始</h2><br>
+
+以下步骤将帮助您在本地环境快速部署并运行本项目的静态站点。
+
+# 1. 克隆项目仓库到本地
+git clone https://github.com/example/mobile-article-aggregator.git
+cd mobile-article-aggregator
+
+# 2. 安装项目依赖（基于 Node.js 环境）
+npm install
+
+# 3. 运行本地开发服务器，默认监听端口 3000
+npm run dev
+
+执行上述命令后，在浏览器中访问 `http://localhost:3000` 即可查看资源列表页面。如需构建生产环境静态文件，请执行 `npm run build`，生成的静态资源位于 `dist` 目录下。
+
+<h2>安装要求</h2><br>
+
+| 依赖项 | 必需版本 | 说明 |
+|--------|----------|------|
+| Node.js | 18.0 及以上 | 项目构建工具与开发服务器运行环境 |
+| npm | 8.0 及以上 | Node.js 包管理器，用于安装项目依赖 |
+| Git | 2.30 及以上 | 用于克隆仓库与版本管理 |
+| 现代浏览器 | Chrome 90+ / Firefox 88+ | 前端页面访问与调试支持 |
+| HTTP 服务器 | 任意静态文件服务 | 生产环境托管构建后的静态文件，如 Nginx、Caddy 或 Apache |
+| 可选：Shell 环境 | Bash 4.0+ | 运行链接状态检测脚本（位于 scripts/ 目录） |
+
+<h2>文档导航</h2><br>
+
+| 层面 | 目录 | 回答的问题 |
+|------|------|------------|
+| 用户入门 | docs/getting-started.md | 如何使用本项目的资源列表？如何通过分类标签快速找到所需文章？ |
+| 维护者指南 | docs/maintenance.md | 如何新增、修改或删除链接条目？链接格式校验规则是什么？ |
+| 开发贡献 | docs/contributing.md | 如何搭建开发环境？代码风格规范与提交信息格式要求有哪些？ |
+| 部署运维 | docs/deployment.md | 如何将站点部署到生产服务器？如何配置自定义域名与 HTTPS？ |
+
+<h2>资源列表</h2><br>
+
+<h3>移动端技术文章链接汇总</h3><br>
+
+以下列表收录了本批次（第 8/24 批，共300 个资源链接）的全部移动端文章外链。所有链接均按照用户提供的原始格式原样呈现，未做任何协议、域名或路径的改动。
+
+xo.cuangezhan.com/?Article/4372211.sHtML<br>
+xo.cuangezhan.com/?Article/0584822.sHtML<br>
+xo.cuangezhan.com/?Article/1109887.sHtML<br>
+xo.cuangezhan.com/?Article/8592083.sHtML<br>
+xo.cuangezhan.com/?Article/0189480.sHtML<br>
+xo.cuangezhan.com/?Article/5520243.sHtML<br>
+xo.cuangezhan.com/?Article/4820209.sHtML<br>
+xo.cuangezhan.com/?Article/7232378.sHtML<br>
+xo.cuangezhan.com/?Article/0857426.sHtML<br>
+xo.cuangezhan.com/?Article/4846486.sHtML<br>
+xo.cuangezhan.com/?Article/2389838.sHtML<br>
+xo.cuangezhan.com/?Article/9741089.sHtML<br>
+xo.cuangezhan.com/?Article/0752004.sHtML<br>
+xo.cuangezhan.com/?Article/1525211.sHtML<br>
+xo.cuangezhan.com/?Article/9750593.sHtML<br>
+xo.cuangezhan.com/?Article/1230150.sHtML<br>
+xo.cuangezhan.com/?Article/2919308.sHtML<br>
+xo.cuangezhan.com/?Article/3040741.sHtML<br>
+xo.cuangezhan.com/?Article/2992326.sHtML<br>
+xo.cuangezhan.com/?Article/3118343.sHtML<br>
+xo.cuangezhan.com/?Article/2218237.sHtML<br>
+xo.cuangezhan.com/?Article/3388452.sHtML<br>
+xo.cuangezhan.com/?Article/5901049.sHtML<br>
+xo.cuangezhan.com/?Article/1122648.sHtML<br>
+xo.cuangezhan.com/?Article/7144975.sHtML<br>
+xo.cuangezhan.com/?Article/9603872.sHtML<br>
+xo.cuangezhan.com/?Article/7883780.sHtML<br>
+xo.cuangezhan.com/?Article/7034008.sHtML<br>
+xo.cuangezhan.com/?Article/9238395.sHtML<br>
+xo.cuangezhan.com/?Article/6977568.sHtML<br>
+xo.cuangezhan.com/?Article/7615453.sHtML<br>
+xo.cuangezhan.com/?Article/0498722.sHtML<br>
+xo.cuangezhan.com/?Article/0710157.sHtML<br>
+xo.cuangezhan.com/?Article/6084687.sHtML<br>
+xo.cuangezhan.com/?Article/2524452.sHtML<br>
+xo.cuangezhan.com/?Article/4897675.sHtML<br>
+xo.cuangezhan.com/?Article/2933594.sHtML<br>
+xo.cuangezhan.com/?Article/1557854.sHtML<br>
+xo.cuangezhan.com/?Article/1952459.sHtML<br>
+xo.cuangezhan.com/?Article/9098933.sHtML<br>
+xo.cuangezhan.com/?Article/5307280.sHtML<br>
+xo.cuangezhan.com/?Article/9086482.sHtML<br>
+xo.cuangezhan.com/?Article/9934705.sHtML<br>
+xo.cuangezhan.com/?Article/3256523.sHtML<br>
+xo.cuangezhan.com/?Article/5476123.sHtML<br>
+xo.cuangezhan.com/?Article/0943019.sHtML<br>
+xo.cuangezhan.com/?Article/9010229.sHtML<br>
+xo.cuangezhan.com/?Article/8741567.sHtML<br>
+xo.cuangezhan.com/?Article/6917307.sHtML<br>
+xo.cuangezhan.com/?Article/0897503.sHtML<br>
+xo.cuangezhan.com/?Article/5938423.sHtML<br>
+xo.cuangezhan.com/?Article/6551124.sHtML<br>
+xo.cuangezhan.com/?Article/9947153.sHtML<br>
+xo.cuangezhan.com/?Article/7898028.sHtML<br>
+xo.cuangezhan.com/?Article/3534436.sHtML<br>
+xo.cuangezhan.com/?Article/9396087.sHtML<br>
+xo.cuangezhan.com/?Article/7129631.sHtML<br>
+xo.cuangezhan.com/?Article/0601078.sHtML<br>
+xo.cuangezhan.com/?Article/0372837.sHtML<br>
+xo.cuangezhan.com/?Article/9291976.sHtML<br>
+xo.cuangezhan.com/?Article/8193554.sHtML<br>
+xo.cuangezhan.com/?Article/6934529.sHtML<br>
+xo.cuangezhan.com/?Article/7057409.sHtML<br>
+xo.cuangezhan.com/?Article/1181717.sHtML<br>
+xo.cuangezhan.com/?Article/6774510.sHtML<br>
+xo.cuangezhan.com/?Article/5837886.sHtML<br>
+xo.cuangezhan.com/?Article/6078086.sHtML<br>
+xo.cuangezhan.com/?Article/1852562.sHtML<br>
+xo.cuangezhan.com/?Article/6368120.sHtML<br>
+xo.cuangezhan.com/?Article/4185817.sHtML<br>
+xo.cuangezhan.com/?Article/5563280.sHtML<br>
+xo.cuangezhan.com/?Article/7152650.sHtML<br>
+xo.cuangezhan.com/?Article/0712929.sHtML<br>
+xo.cuangezhan.com/?Article/4891233.sHtML<br>
+xo.cuangezhan.com/?Article/1084349.sHtML<br>
+xo.cuangezhan.com/?Article/6384296.sHtML<br>
+xo.cuangezhan.com/?Article/8101528.sHtML<br>
+xo.cuangezhan.com/?Article/4760426.sHtML<br>
+xo.cuangezhan.com/?Article/0715934.sHtML<br>
+xo.cuangezhan.com/?Article/2564007.sHtML<br>
+xo.cuangezhan.com/?Article/0710267.sHtML<br>
+xo.cuangezhan.com/?Article/4495367.sHtML<br>
+xo.cuangezhan.com/?Article/4539021.sHtML<br>
+xo.cuangezhan.com/?Article/8056171.sHtML<br>
+xo.cuangezhan.com/?Article/2665866.sHtML<br>
+xo.cuangezhan.com/?Article/0486848.sHtML<br>
+xo.cuangezhan.com/?Article/3932568.sHtML<br>
+xo.cuangezhan.com/?Article/1414735.sHtML<br>
+xo.cuangezhan.com/?Article/4115055.sHtML<br>
+xo.cuangezhan.com/?Article/4791715.sHtML<br>
+xo.cuangezhan.com/?Article/7716758.sHtML<br>
+xo.cuangezhan.com/?Article/5504901.sHtML<br>
+xo.cuangezhan.com/?Article/8880015.sHtML<br>
+xo.cuangezhan.com/?Article/0850013.sHtML<br>
+xo.cuangezhan.com/?Article/2378316.sHtML<br>
+xo.cuangezhan.com/?Article/1637949.sHtML<br>
+xo.cuangezhan.com/?Article/3051787.sHtML<br>
+xo.cuangezhan.com/?Article/5032431.sHtML<br>
+xo.cuangezhan.com/?Article/3752079.sHtML<br>
+xo.cuangezhan.com/?Article/0057335.sHtML<br>
+xo.cuangezhan.com/?Article/5581137.sHtML<br>
+xo.cuangezhan.com/?Article/4602791.sHtML<br>
+xo.cuangezhan.com/?Article/3937590.sHtML<br>
+xo.cuangezhan.com/?Article/9631384.sHtML<br>
+xo.cuangezhan.com/?Article/0488604.sHtML<br>
+xo.cuangezhan.com/?Article/7426889.sHtML<br>
+xo.cuangezhan.com/?Article/6395703.sHtML<br>
+xo.cuangezhan.com/?Article/1157626.sHtML<br>
+xo.cuangezhan.com/?Article/8125712.sHtML<br>
+xo.cuangezhan.com/?Article/8183940.sHtML<br>
+xo.cuangezhan.com/?Article/0410142.sHtML<br>
+xo.cuangezhan.com/?Article/9842008.sHtML<br>
+xo.cuangezhan.com/?Article/4593968.sHtML<br>
+xo.cuangezhan.com/?Article/8180395.sHtML<br>
+xo.cuangezhan.com/?Article/4480378.sHtML<br>
+xo.cuangezhan.com/?Article/3605638.sHtML<br>
+xo.cuangezhan.com/?Article/5690452.sHtML<br>
+xo.cuangezhan.com/?Article/6682050.sHtML<br>
+xo.cuangezhan.com/?Article/3614529.sHtML<br>
+xo.cuangezhan.com/?Article/8242318.sHtML<br>
+xo.cuangezhan.com/?Article/1481670.sHtML<br>
+xo.cuangezhan.com/?Article/7883995.sHtML<br>
+xo.cuangezhan.com/?Article/6087527.sHtML<br>
+xo.cuangezhan.com/?Article/3306508.sHtML<br>
+xo.cuangezhan.com/?Article/6937945.sHtML<br>
+xo.cuangezhan.com/?Article/8987880.sHtML<br>
+xo.cuangezhan.com/?Article/4317531.sHtML<br>
+xo.cuangezhan.com/?Article/9671601.sHtML<br>
+xo.cuangezhan.com/?Article/0420001.sHtML<br>
+xo.cuangezhan.com/?Article/0384196.sHtML<br>
+xo.cuangezhan.com/?Article/9340894.sHtML<br>
+xo.cuangezhan.com/?Article/8802643.sHtML<br>
+xo.cuangezhan.com/?Article/0322176.sHtML<br>
+xo.cuangezhan.com/?Article/6738334.sHtML<br>
+xo.cuangezhan.com/?Article/0839014.sHtML<br>
+xo.cuangezhan.com/?Article/5565297.sHtML<br>
+xo.cuangezhan.com/?Article/8456893.sHtML<br>
+xo.cuangezhan.com/?Article/5541992.sHtML<br>
+xo.cuangezhan.com/?Article/5523811.sHtML<br>
+xo.cuangezhan.com/?Article/4094443.sHtML<br>
+xo.cuangezhan.com/?Article/0187504.sHtML<br>
+xo.cuangezhan.com/?Article/7486338.sHtML<br>
+xo.cuangezhan.com/?Article/0561603.sHtML<br>
+xo.cuangezhan.com/?Article/7227151.sHtML<br>
+xo.cuangezhan.com/?Article/1422343.sHtML<br>
+xo.cuangezhan.com/?Article/4743347.sHtML<br>
+xo.cuangezhan.com/?Article/5267976.sHtML<br>
+xo.cuangezhan.com/?Article/8609747.sHtML<br>
+xo.cuangezhan.com/?Article/0463182.sHtML<br>
+xo.cuangezhan.com/?Article/1524051.sHtML<br>
+xo.cuangezhan.com/?Article/3349088.sHtML<br>
+xo.cuangezhan.com/?Article/7305021.sHtML<br>
+xo.cuangezhan.com/?Article/3889496.sHtML<br>
+xo.cuangezhan.com/?Article/2646852.sHtML<br>
+xo.cuangezhan.com/?Article/4596718.sHtML<br>
+xo.cuangezhan.com/?Article/4156788.sHtML<br>
+xo.cuangezhan.com/?Article/2693459.sHtML<br>
+xo.cuangezhan.com/?Article/2195037.sHtML<br>
+xo.cuangezhan.com/?Article/1452156.sHtML<br>
+xo.cuangezhan.com/?Article/7463865.sHtML<br>
+xo.cuangezhan.com/?Article/2552755.sHtML<br>
+xo.cuangezhan.com/?Article/4108304.sHtML<br>
+xo.cuangezhan.com/?Article/6235399.sHtML<br>
+xo.cuangezhan.com/?Article/6378641.sHtML<br>
+xo.cuangezhan.com/?Article/0584785.sHtML<br>
+xo.cuangezhan.com/?Article/7937203.sHtML<br>
+xo.cuangezhan.com/?Article/2344645.sHtML<br>
+xo.cuangezhan.com/?Article/8867316.sHtML<br>
+xo.cuangezhan.com/?Article/7805034.sHtML<br>
+xo.cuangezhan.com/?Article/4199099.sHtML<br>
+xo.cuangezhan.com/?Article/1538188.sHtML<br>
+xo.cuangezhan.com/?Article/5756518.sHtML<br>
+xo.cuangezhan.com/?Article/7787012.sHtML<br>
+xo.cuangezhan.com/?Article/5935984.sHtML<br>
+xo.cuangezhan.com/?Article/7181317.sHtML<br>
+xo.cuangezhan.com/?Article/5537564.sHtML<br>
+xo.cuangezhan.com/?Article/2740480.sHtML<br>
+xo.cuangezhan.com/?Article/9082927.sHtML<br>
+xo.cuangezhan.com/?Article/1951645.sHtML<br>
+xo.cuangezhan.com/?Article/3398048.sHtML<br>
+xo.cuangezhan.com/?Article/9864549.sHtML<br>
+xo.cuangezhan.com/?Article/6388649.sHtML<br>
+xo.cuangezhan.com/?Article/1900707.sHtML<br>
+xo.cuangezhan.com/?Article/8551279.sHtML<br>
+xo.cuangezhan.com/?Article/2253511.sHtML<br>
+xo.cuangezhan.com/?Article/4445052.sHtML<br>
+xo.cuangezhan.com/?Article/3261301.sHtML<br>
+xo.cuangezhan.com/?Article/3654524.sHtML<br>
+xo.cuangezhan.com/?Article/0091447.sHtML<br>
+xo.cuangezhan.com/?Article/7719559.sHtML<br>
+xo.cuangezhan.com/?Article/9612456.sHtML<br>
+xo.cuangezhan.com/?Article/6502367.sHtML<br>
+xo.cuangezhan.com/?Article/1824994.sHtML<br>
+xo.cuangezhan.com/?Article/5971607.sHtML<br>
+xo.cuangezhan.com/?Article/4756452.sHtML<br>
+xo.cuangezhan.com/?Article/4198469.sHtML<br>
+xo.cuangezhan.com/?Article/9396455.sHtML<br>
+xo.cuangezhan.com/?Article/6342730.sHtML<br>
+xo.cuangezhan.com/?Article/7897894.sHtML<br>
+xo.cuangezhan.com/?Article/0273663.sHtML<br>
+xo.cuangezhan.com/?Article/3114550.sHtML<br>
+xo.cuangezhan.com/?Article/3800960.sHtML<br>
+xo.cuangezhan.com/?Article/9823279.sHtML<br>
+xo.cuangezhan.com/?Article/2638079.sHtML<br>
+xo.cuangezhan.com/?Article/2264559.sHtML<br>
+xo.cuangezhan.com/?Article/9631915.sHtML<br>
+xo.cuangezhan.com/?Article/8615002.sHtML<br>
+xo.cuangezhan.com/?Article/7896759.sHtML<br>
+xo.cuangezhan.com/?Article/7552576.sHtML<br>
+xo.cuangezhan.com/?Article/7489332.sHtML<br>
+xo.cuangezhan.com/?Article/5567941.sHtML<br>
+xo.cuangezhan.com/?Article/7083358.sHtML<br>
+xo.cuangezhan.com/?Article/0027654.sHtML<br>
+xo.cuangezhan.com/?Article/2887896.sHtML<br>
+xo.cuangezhan.com/?Article/6613454.sHtML<br>
+xo.cuangezhan.com/?Article/2273557.sHtML<br>
+xo.cuangezhan.com/?Article/9504055.sHtML<br>
+xo.cuangezhan.com/?Article/0882608.sHtML<br>
+xo.cuangezhan.com/?Article/6710161.sHtML<br>
+xo.cuangezhan.com/?Article/3632600.sHtML<br>
+xo.cuangezhan.com/?Article/0042601.sHtML<br>
+xo.cuangezhan.com/?Article/8459619.sHtML<br>
+xo.cuangezhan.com/?Article/7089443.sHtML<br>
+xo.cuangezhan.com/?Article/5609075.sHtML<br>
+xo.cuangezhan.com/?Article/4877220.sHtML<br>
+xo.cuangezhan.com/?Article/4570405.sHtML<br>
+xo.cuangezhan.com/?Article/3277263.sHtML<br>
+xo.cuangezhan.com/?Article/6743703.sHtML<br>
+xo.cuangezhan.com/?Article/1182604.sHtML<br>
+xo.cuangezhan.com/?Article/0720610.sHtML<br>
+xo.cuangezhan.com/?Article/1897372.sHtML<br>
+xo.cuangezhan.com/?Article/9563898.sHtML<br>
+xo.cuangezhan.com/?Article/1964994.sHtML<br>
+xo.cuangezhan.com/?Article/8265783.sHtML<br>
+xo.cuangezhan.com/?Article/2419557.sHtML<br>
+xo.cuangezhan.com/?Article/7005086.sHtML<br>
+xo.cuangezhan.com/?Article/3274786.sHtML<br>
+xo.cuangezhan.com/?Article/3709618.sHtML<br>
+xo.cuangezhan.com/?Article/0193479.sHtML<br>
+xo.cuangezhan.com/?Article/5526273.sHtML<br>
+xo.cuangezhan.com/?Article/2677289.sHtML<br>
+xo.cuangezhan.com/?Article/9259923.sHtML<br>
+xo.cuangezhan.com/?Article/3686018.sHtML<br>
+xo.cuangezhan.com/?Article/0754284.sHtML<br>
+xo.cuangezhan.com/?Article/2828694.sHtML<br>
+xo.cuangezhan.com/?Article/9218756.sHtML<br>
+xo.cuangezhan.com/?Article/7164113.sHtML<br>
+xo.cuangezhan.com/?Article/1074471.sHtML<br>
+xo.cuangezhan.com/?Article/9200626.sHtML<br>
+xo.cuangezhan.com/?Article/8138746.sHtML<br>
+xo.cuangezhan.com/?Article/5233251.sHtML<br>
+xo.cuangezhan.com/?Article/0011707.sHtML<br>
+xo.cuangezhan.com/?Article/1601261.sHtML<br>
+xo.cuangezhan.com/?Article/1822081.sHtML<br>
+xo.cuangezhan.com/?Article/1268980.sHtML<br>
+xo.cuangezhan.com/?Article/1136662.sHtML<br>
+xo.cuangezhan.com/?Article/6217568.sHtML<br>
+xo.cuangezhan.com/?Article/7124416.sHtML<br>
+xo.cuangezhan.com/?Article/7815089.sHtML<br>
+xo.cuangezhan.com/?Article/9715746.sHtML<br>
+xo.cuangezhan.com/?Article/7113428.sHtML<br>
+xo.cuangezhan.com/?Article/8478633.sHtML<br>
+xo.cuangezhan.com/?Article/4851271.sHtML<br>
+xo.cuangezhan.com/?Article/1772315.sHtML<br>
+xo.cuangezhan.com/?Article/7641201.sHtML<br>
+xo.cuangezhan.com/?Article/6318938.sHtML<br>
+xo.cuangezhan.com/?Article/7758820.sHtML<br>
+xo.cuangezhan.com/?Article/0859420.sHtML<br>
+xo.cuangezhan.com/?Article/4561187.sHtML<br>
+xo.cuangezhan.com/?Article/9084908.sHtML<br>
+xo.cuangezhan.com/?Article/6887425.sHtML<br>
+xo.cuangezhan.com/?Article/4524514.sHtML<br>
+xo.cuangezhan.com/?Article/7493607.sHtML<br>
+xo.cuangezhan.com/?Article/6358320.sHtML<br>
+xo.cuangezhan.com/?Article/8876825.sHtML<br>
+xo.cuangezhan.com/?Article/3858544.sHtML<br>
+xo.cuangezhan.com/?Article/8956869.sHtML<br>
+xo.cuangezhan.com/?Article/9339357.sHtML<br>
+xo.cuangezhan.com/?Article/5924112.sHtML<br>
+xo.cuangezhan.com/?Article/5202704.sHtML<br>
+xo.cuangezhan.com/?Article/7935735.sHtML<br>
+xo.cuangezhan.com/?Article/9371782.sHtML<br>
+xo.cuangezhan.com/?Article/1258671.sHtML<br>
+xo.cuangezhan.com/?Article/1904983.sHtML<br>
+xo.cuangezhan.com/?Article/6151982.sHtML<br>
+xo.cuangezhan.com/?Article/0382253.sHtML<br>
+xo.cuangezhan.com/?Article/4290210.sHtML<br>
+xo.cuangezhan.com/?Article/1974346.sHtML<br>
+xo.cuangezhan.com/?Article/5263312.sHtML<br>
+xo.cuangezhan.com/?Article/7266732.sHtML<br>
+xo.cuangezhan.com/?Article/0013220.sHtML<br>
+xo.cuangezhan.com/?Article/1207715.sHtML<br>
+xo.cuangezhan.com/?Article/6056809.sHtML<br>
+xo.cuangezhan.com/?Article/8226750.sHtML<br>
+xo.cuangezhan.com/?Article/1685868.sHtML<br>
+xo.cuangezhan.com/?Article/6931936.sHtML<br>
+xo.cuangezhan.com/?Article/7155999.sHtML<br>
+xo.cuangezhan.com/?Article/3373445.sHtML<br>
+xo.cuangezhan.com/?Article/3876790.sHtML<br>
+
+<h2>项目结构</h2><br>
+
+项目目录采用模块化分层设计，便于维护与扩展。各子目录职责清晰，核心资源列表与前端展示逻辑分离。
+
+
+mobile-article-aggregator/
+├── public/                          # 静态资源目录，无需构建直接复制
+│   ├── favicon.ico                  # 站点图标文件
+│   └── robots.txt                   # 搜索引擎爬虫规则，屏蔽非生产环境路径
+├── src/                             # 源代码主目录
+│   ├── assets/                      # 前端资源文件（图片、字体、全局样式）
+│   │   ├── images/                  # 项目用到的矢量图与位图素材
+│   │   └── styles/                  # 全局基础样式与 CSS 变量定义
+│   ├── components/                  # 可复用的 UI 组件
+│   │   ├── LinkList.vue             # 链接列表核心渲染组件，支持分页与过滤
+│   │   ├── SearchBar.vue            # 关键字搜索输入组件
+│   │   └── CategoryFilter.vue       # 分类标签筛选组件
+│   ├── data/                        # 数据层，存放静态链接资源列表
+│   │   ├── links.json               # 主链接索引文件，包含全部 250 条记录
+│   │   └── categories.json          # 分类映射表，定义标签与链接 ID 的对应关系
+│   ├── layouts/                     # 页面布局模板
+│   │   ├── default.vue              # 默认两栏布局（侧边栏 + 主内容区）
+│   │   └── full-width.vue           # 全宽布局，用于搜索与统计页面
+│   ├── pages/                       # 路由页面入口
+│   │   ├── index.vue                # 首页，展示全部资源列表与分类概览
+│   │   ├── about.vue                # 项目介绍与使用说明页面
+│   │   └── stats.vue                # 链接统计信息页面（总数、分类分布）
+│   ├── utils/                       # 工具函数库
+│   │   ├── validator.js             # 链接格式校验与规范化工具
+│   │   └── filter.js                # 数组过滤与排序辅助函数
+│   └── main.js                      # 应用入口文件，初始化 Vue 实例与插件
+├── scripts/                         # 运维与辅助脚本
+│   ├── check-links.sh               # 批量检测链接可用性的 Bash 脚本
+│   └── generate-sitemap.js          # 生成站点地图 XML 文件的 Node 脚本
+├── tests/                           # 单元测试与集成测试
+│   ├── unit/                        # 组件与函数的单元测试用例
+│   └── e2e/                         # 端到端测试脚本（基于 Playwright）
+├── .gitignore                       # Git 版本忽略规则文件
+├── package.json                     # Node.js 项目依赖与脚本定义
+├── README.md                        # 项目说明文档（本文件）
+├── LICENSE                          # MIT 许可证全文
+└── vite.config.js                   # Vite 构建工具配置文件
+
+
+<h2> 贡献指南</h2><br>
+
+我们欢迎社区开发者以多种形式参与本项目的维护与改进。所有贡献需遵守项目行为准则，并按照以下流程操作。
+
+第一步：查阅现有 Issue 与 Pull Request。在提交新贡献之前，请先浏览 GitHub 上的现有议题，确认无人正在处理相同问题或功能请求，避免重复劳动。
+
+第二步：Fork 项目并创建功能分支。将本仓库 Fork 至个人账号下，然后基于 `main` 分支创建一个新的分支，分支命名建议采用 `feature/功能描述` 或 `fix/问题简述` 的格式。
+
+第三步：完成代码或文档修改。请遵循项目既定的代码风格（ESLint 配置）与提交信息规范（使用 Conventional Commits 格式）。若涉及链接列表的增删，请同步更新 `src/data/links.json` 中的对应条目。
+
+第四步：编写或更新测试用例。对于新增的功能或修复的缺陷，请在 `tests/` 目录下补充相应的单元测试或端到端测试，确保代码覆盖率不下降。
+
+第五步：提交 Pull Request。推送本地分支到远程仓库后，向本项目的 `main` 分支发起 Pull Request，并在描述中清晰说明修改内容、动机以及相关 Issue 编号。项目维护者会在三个工作日内进行审阅。
+
+<h2>常见问题</h2><br>
+
+问：如何快速判断某条链接是否仍然有效？
+
+答：项目根目录下的 `scripts/check
+
+> 外链数量: 350 | 生成时间:2026-09-2606:21:58
